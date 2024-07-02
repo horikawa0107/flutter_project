@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "235212236523",
+    "project_id": "sync-snooze",
+    "storage_bucket": "sync-snooze.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235212236523:android:b552eeb448800b224200ae",
+        "android_client_info": {
+          "package_name": "com.example.syncsnooze"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxnOvtD8zWul6gB8Yc_LdkmUQLgye_kSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
