@@ -12,9 +12,9 @@ class _InPageState extends State<InPage> {
   String _RoomName = '';
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFD9C68F),
+        backgroundColor: Colors.white,
         appBar: AppBar(
-            backgroundColor: Color(0xFFD9C68F),
+            backgroundColor:  Colors.red,
             title : Text("入室")
         ),
         body: Center(
@@ -45,8 +45,7 @@ class _InPageState extends State<InPage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(200, 100),
-                  // primary: Color(0xFF89A64B),
-                  // onPrimary: Colors.white,
+                  backgroundColor: Colors.red,
                 ),
                 onPressed: () async {
                   // データベースにデータを検索

@@ -37,15 +37,41 @@ class _ChatPageState extends State<ChatPage> {
               Container(
                 margin: EdgeInsets.only(top: 20.0),
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(200, 100),
+                    backgroundColor: Colors.red,
+                  ),
                   onPressed: () async{
-                    await deleteAllDocuments(widget._RoomName,widget._RoomName);
-                    Navigator.of(context).pop();
+                    if (isCon==false) {
+                      await deleteAllDocuments(
+                          widget._RoomName, widget._RoomName);
+                      Navigator.of(context).pop();
+                    }
+                    else{
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("エラー"),
+                            content: Text("しりとりは終わってません。"),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text("OK"),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          );
                         },
-                  child: Text('削除'),
+                      );
+                    }
+                  },
+                  child: Text('終了',style: TextStyle(color: Colors.white,fontSize: 35),),
                 ),
-
               ),
               Expanded(
+                flex: 1,
                 // StreamBuilder
                 // 非同期処理の結果を元にWidgetを作れる
                 child: StreamBuilder<DocumentSnapshot>(
@@ -61,18 +87,16 @@ class _ChatPageState extends State<ChatPage> {
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else if (!snapshot.hasData  && !snapshot.data!.exists) {
-                          return Text('No Data Found');
+                      return Text('No Data Found');
                     } else {
                       var data = snapshot.data!.data() as Map<String, dynamic>;
                       bool text = data['isCon'] ?? 'No text available';
                       isCon=data['isCon'];
                       _num=data['_num'];
-
-
                       return Text(
                         text
-                          ? (_num==widget._mynum ?"おなたの番です。" : "相手の番です。")
-                          : "stop",
+                            ? (_num==widget._mynum ?"おなたの番です。" : "相手の番です。")
+                            : "stop",
                         style: TextStyle(fontSize: 24),
                       );
                     }
@@ -118,8 +142,8 @@ class _ChatPageState extends State<ChatPage> {
                         onSubmitted: (value){
                           if (isCon==true && _num==widget._mynum) {
                             String messeage = _controller.text;
-                            _handleSubmit(_controller.text, widget._RoomName);
                             _judg(messeage, widget._RoomName,widget._mynum);
+                            _handleSubmit(_controller.text, widget._RoomName);
                           }
                           else{
                             showDialog(
@@ -156,8 +180,8 @@ class _ChatPageState extends State<ChatPage> {
                           onPressed: () {
                             if (isCon==true && _num==widget._mynum) {
                               String messeage = _controller.text;
-                              _handleSubmit(_controller.text, widget._RoomName);
                               _judg(messeage, widget._RoomName,widget._mynum);
+                              _handleSubmit(_controller.text, widget._RoomName);
                             }
                             else{
                               showDialog(
@@ -331,9 +355,11 @@ _judg(String message,String _RoomName,int _mynum) async {
         print('Success');
         if (firstDocument["sent_text"][firstDocument["sent_text"].length - 1] ==
             message[0]) {
+          print("hello");
+          print(firstDocument["sent_text"][firstDocument["sent_text"].length - 1]);
+          print(message[0]);
           _change_num(_RoomName,_mynum);
           print("countinu");
-
         }
         else {
           print("stop");

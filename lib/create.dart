@@ -29,9 +29,9 @@ class _CreatePageState extends State<CreatePage> {
   String _RoomName = '';
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFD9C68F),
+        backgroundColor: Colors.white,
         appBar: AppBar(
-            backgroundColor: Color(0xFFD9C68F),
+            backgroundColor: Colors.red,
             title : Text("作成")
         ),
         body: Center(
@@ -53,7 +53,7 @@ class _CreatePageState extends State<CreatePage> {
                     });
                   },
                   decoration: InputDecoration(
-                    fillColor:Color(0xFFD9D9D9),
+                    fillColor:Colors.white,
                     filled: true,
                     contentPadding: EdgeInsets.all(30),
                     labelText: '部屋名',
@@ -61,10 +61,6 @@ class _CreatePageState extends State<CreatePage> {
                       fontSize: 35,
                     ),
                     border: OutlineInputBorder(),
-                    // counterStyle: TextStyle(
-                    //   fontSize: 50,
-                    //   color: Color(0xFFD9D9D9),
-                    // )
                   ),
                 ),
               ),
@@ -89,6 +85,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(200, 100),
+                  backgroundColor: Colors.red,
                   // primary: Color(0xFF89A64B),
                   // onPrimary: Colors.white,
                 ),

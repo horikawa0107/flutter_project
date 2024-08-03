@@ -33,44 +33,17 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
 
 
-  _addNameToList(String name) async{
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('names')
-          .orderBy("number",descending: true)
-          .get();
-      if (querySnapshot.docs.isNotEmpty  ) {
-        int count=querySnapshot.docs.length;
-        print(count);
-        FirebaseFirestore.instance
-            .collection('names')
-            .add({'name': name,"number":count+1})
-            .then((value) => print("Name Added"))
-            .catchError((error) => print("Failed to add name: $error"));
-
-      }
-      else{
-        FirebaseFirestore.instance
-            .collection('names')
-            .add({'name': name,"number":1})
-            .then((value) => print("First Name Added"))
-            .catchError((error) => print("Failed to first add name: $error"));
-        print("first messeage");
-      }
-    }catch(e){
-      print(e);
-    }
-  }
 
   final _controller = TextEditingController();
   String _myname="";
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-          title: new Text("User Name Input Screen"),
-          backgroundColor: Colors.red
-      ),
+        backgroundColor: Colors.white,
+        appBar: new AppBar(
+            title: new Text("しりとりアプリ"),
+            backgroundColor: Colors.red
+        ),
         body:Center(
           child:Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -88,7 +61,7 @@ class _UserPageState extends State<UserPage> {
                       });
                     },
                     decoration: InputDecoration(
-                      fillColor:Color(0xFFD9D9D9),
+                      fillColor:Colors.white,
                       filled: true,
                       contentPadding: EdgeInsets.all(30),
                       labelText: '名前',
@@ -107,12 +80,12 @@ class _UserPageState extends State<UserPage> {
                   child: const Text('作成',
                     style: TextStyle(
                       fontSize: 35,
+                      color: Colors.white,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(200, 100),
-                    // primary: Color(0xFF89A64B),
-                    // onPrimary: Colors.white,
+                    backgroundColor: Colors.red,
                   ),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
@@ -123,11 +96,11 @@ class _UserPageState extends State<UserPage> {
                 ElevatedButton(
                   child: const Text('入室',style: TextStyle(
                     fontSize: 35,
+                    color: Colors.white,
                   ),),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(200, 100),
-                    // primary: Color(0xFF89A64B),
-                    // onPrimary: Colors.white,
+                    backgroundColor: Colors.red,
                   ),
                   onPressed: () {
                     Navigator.push(
