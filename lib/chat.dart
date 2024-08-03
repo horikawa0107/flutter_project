@@ -58,7 +58,7 @@ class _ChatPageState extends State<ChatPage> {
                               TextButton(
                                 child: Text("OK"),
                                 onPressed: () {
-                                  Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                                 },
                               ),
                             ],
@@ -194,12 +194,7 @@ class _ChatPageState extends State<ChatPage> {
                                       TextButton(
                                         child: Text("OK"),
                                         onPressed: () {
-                                          if(isCon==true) {
                                             Navigator.of(context).pop();
-                                          }
-                                          else{
-
-                                          }
                                         },
                                       ),
                                     ],
@@ -305,22 +300,6 @@ Future<void> deleteAllDocuments(String collectionPath,String _RoomName) async {
 
 }
 
-
-
-
-
-_stopSubmit() async{
-  var db = FirebaseFirestore.instance;
-  db.collection("ChatApp").add({
-    "username": "host",
-    "sent_text": "stop",
-    "time": DateTime.now()
-  }).then((val) {
-    print("Success");
-  }).catchError((err) {
-    print(err);
-  });
-}
 _change_num(String _RoomName,int _mynum)async{
   if (_mynum==1) {
     FirebaseFirestore.instance.collection(_RoomName).doc("isTurn").set({
