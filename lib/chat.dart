@@ -96,7 +96,7 @@ class _ChatPageState extends State<ChatPage> {
                       return Text(
                         text
                             ? (_num==widget._mynum ?"おなたの番です。" : "相手の番です。")
-                            : "stop",
+                            : "しりとりは終了しました。",
                         style: TextStyle(fontSize: 24),
                       );
                     }
@@ -350,9 +350,9 @@ _judg(String message,String _RoomName,int _mynum) async {
         .get();
     if (querySnapshot.docs.isNotEmpty) {
       print(querySnapshot.docs.length);
-      if (querySnapshot.docs.length > 2) {
-        QueryDocumentSnapshot firstDocument = querySnapshot.docs[1];
-        print('Success');
+      if (querySnapshot.docs.length > 0) {
+        QueryDocumentSnapshot firstDocument = querySnapshot.docs[0];
+        print(firstDocument["sent_text"]);
         if (firstDocument["sent_text"][firstDocument["sent_text"].length - 1] ==
             message[0]) {
           print("hello");
