@@ -18,7 +18,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final _controller = TextEditingController();
   bool isCon=true;
-  int _num=0;
+  int isTurn=0;
 
 
 
@@ -80,7 +80,7 @@ class _ChatPageState extends State<ChatPage> {
                   // 投稿日時でソート
                   stream: FirebaseFirestore.instance
                       .collection(widget._RoomName)
-                      .doc("isTurn")
+                      .doc("setting")
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -93,11 +93,11 @@ class _ChatPageState extends State<ChatPage> {
                       var data = snapshot.data!.data() as Map<String, dynamic>;
                       bool text = data['isCon'] ?? 'No text available';
                       isCon=data['isCon'];
-                      _num=data['_num'];
+                      isTurn=data['isTurn'];
                       return Text(
                         text
-                            ? (_num==widget._mynum ?"おなたの番です。" : "相手の番です。")
-                            : "しりとりは終了しました。",
+                            ? (isTurn==widget._mynum ?"おなたの番です。" :"相手の番です。")
+                            : (isTurn==4 ?"終了ボタンを押してください。":"しりとりは終了しました。"),
                         style: TextStyle(fontSize: 24),
                       );
                     }
@@ -141,7 +141,7 @@ class _ChatPageState extends State<ChatPage> {
                       child: new TextField(
                         controller: _controller,
                         onSubmitted: (value){
-                          if (isCon==true && _num==widget._mynum) {
+                          if (isCon==true && isTurn==widget._mynum) {
                             String messeage = _controller.text;
                             _judg(messeage, widget._RoomName,widget._mynum);
                             _handleSubmit(_controller.text, widget._RoomName);
@@ -179,7 +179,7 @@ class _ChatPageState extends State<ChatPage> {
                             color: Colors.red,
                           ),
                           onPressed: () {
-                            if (isCon==true && _num==widget._mynum) {
+                            if (isCon==true && isTurn==widget._mynum) {
                               String messeage = _controller.text;
                               _judg(messeage, widget._RoomName,widget._mynum);
                               _handleSubmit(_controller.text, widget._RoomName);
@@ -295,7 +295,7 @@ Future<void> deleteAllDocuments(String collectionPath,String _RoomName) async {
   for (QueryDocumentSnapshot document in snapshot.docs) {
     await document.reference.delete();
   }
-  await FirebaseFirestore.instance.collection(_RoomName).doc("isTurn").set({"_num":0,"isCon":true});
+  await FirebaseFirestore.instance.collection(_RoomName).doc("setting").set({"isTurn":4,"isCon":false});
 
 
 
@@ -303,21 +303,21 @@ Future<void> deleteAllDocuments(String collectionPath,String _RoomName) async {
 
 _change_num(String _RoomName,int _mynum)async{
   if (_mynum==1) {
-    FirebaseFirestore.instance.collection(_RoomName).doc("isTurn").set({
-      'isCon': true, "_num": 0
+    FirebaseFirestore.instance.collection(_RoomName).doc("setting").set({
+      'isCon': true, "isTurn": 0
     });
   }
   else{
-    FirebaseFirestore.instance.collection(_RoomName).doc("isTurn").set({
-      'isCon': true, "_num": 1
+    FirebaseFirestore.instance.collection(_RoomName).doc("setting").set({
+      'isCon': true, "isTurn": 1
     });
   }
 }
 
 _stop(String _RoomName) async{
   print("stop");
-  FirebaseFirestore.instance.collection(_RoomName).doc("isTurn").set({
-    'isCon' : false,"_num": 3
+  FirebaseFirestore.instance.collection(_RoomName).doc("setting").set({
+    'isCon' : false,"isTurn": 3
   });
 
 }

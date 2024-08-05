@@ -76,7 +76,7 @@ class _InPageState extends State<InPage> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: Text("エラー"),
-                          content: Text("部屋名が存在しません。"),
+                          content: Text("部屋が存在しません。"),
                           actions: <Widget>[
                             TextButton(
                               child: Text("OK"),

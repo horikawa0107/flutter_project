@@ -74,7 +74,7 @@ class _CreatePageState extends State<CreatePage> {
                   FirebaseFirestore firestore = FirebaseFirestore.instance;
                   final snapshot = await firestore.collection(_RoomName).doc("members").set({widget.myname: 0
                   });
-                  await firestore.collection(_RoomName).doc("isTurn").set({"_num":0,"isCon":true}
+                  await firestore.collection(_RoomName).doc("setting").set({"isTurn":0,"isCon":true}
 
                   );
                 },
