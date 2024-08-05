@@ -91,7 +91,7 @@ class _InPageState extends State<InPage> {
 
                     }
                 },
-                child: Text("次へ", style: TextStyle(
+                child: Text("入室", style: TextStyle(
                   color: Colors.white,
                   fontSize: 35,
                 ),
