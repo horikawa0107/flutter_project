@@ -29,7 +29,7 @@ class _ChatPageState extends State<ChatPage> {
         backgroundColor: Colors.white,
         appBar: new AppBar(
             title: new Text("チャット"),
-            backgroundColor: Colors.red
+            backgroundColor: Color(0xFF93c9ff)
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -40,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(200, 100),
-                    backgroundColor: Colors.red,
+                    backgroundColor: Color(0xFF93c9ff),
                   ),
                   onPressed: () async{
                     if (isCon==false) {
@@ -176,7 +176,7 @@ class _ChatPageState extends State<ChatPage> {
                       child: new IconButton(
                           icon: new Icon(
                             Icons.chat,
-                            color: Colors.red,
+                            color: Color(0xFF93c9ff),
                           ),
                           onPressed: () {
                             if (isCon==true && isTurn==widget._mynum) {
@@ -221,30 +221,15 @@ class _ChatPageState extends State<ChatPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 12.0,),
-            Text(userName, style: TextStyle(color: Colors.red)),
+            Text(userName, style: TextStyle(color: Color(0xFF93c9ff))),
             Text(message),
           ],
         ),
-        Icon(Icons.person, color:Colors.red),
+        Icon(Icons.person, color:Color(0xFF93c9ff)),
       ],
     );
   }
 
-  Widget _RedLine() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        Container(
-          width: 350,
-          height: 10,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-        ),
-      ],
-    );
-  }
 
   Widget _OtherText(String message, String userName) {
     return Row(

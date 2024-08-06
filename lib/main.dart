@@ -40,8 +40,11 @@ class _UserPageState extends State<UserPage> {
     return new Scaffold(
         backgroundColor: Colors.white,
         appBar: new AppBar(
-            title: new Text("しりとりアプリ"),
-            backgroundColor: Colors.red
+            title: new Text("しりとりアプリ",style: TextStyle(
+              fontSize: 25,
+              color: Colors.white,
+            ),),
+            backgroundColor: Color(0xFF93c9ff)
         ),
         body:Center(
           child:Column(
@@ -84,7 +87,7 @@ class _UserPageState extends State<UserPage> {
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(200, 100),
-                    backgroundColor: Colors.red,
+                    backgroundColor: Color(0xFF93c9ff),
                   ),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
@@ -99,7 +102,7 @@ class _UserPageState extends State<UserPage> {
                   ),),
                   style: ElevatedButton.styleFrom(
                     fixedSize: Size(200, 100),
-                    backgroundColor: Colors.red,
+                    backgroundColor: Color(0xFF93c9ff),
                   ),
                   onPressed: () {
                     Navigator.push(

@@ -14,8 +14,11 @@ class _InPageState extends State<InPage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            backgroundColor:  Colors.red,
-            title : Text("入室")
+            backgroundColor:  Color(0xFF93c9ff),
+            title : Text("入室",style: TextStyle(
+              fontSize: 25,
+              color: Colors.white,
+            ),)
         ),
         body: Center(
           child:Column(
@@ -45,7 +48,7 @@ class _InPageState extends State<InPage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(200, 100),
-                  backgroundColor: Colors.red,
+                  backgroundColor: Color(0xFF93c9ff),
                 ),
                 onPressed: () async {
                   // データベースにデータを検索

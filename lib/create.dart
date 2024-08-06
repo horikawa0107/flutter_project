@@ -31,8 +31,11 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            backgroundColor: Colors.red,
-            title : Text("作成")
+            backgroundColor: Color(0xFF93c9ff),
+            title : Text("作成",style: TextStyle(
+              fontSize: 25,
+              color: Colors.white,
+            ),)
         ),
         body: Center(
           child:Column(
@@ -85,7 +88,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(200, 100),
-                  backgroundColor: Colors.red,
+                  backgroundColor: Color(0xFF93c9ff),
                   // primary: Color(0xFF89A64B),
                   // onPrimary: Colors.white,
                 ),
